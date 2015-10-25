@@ -1,0 +1,941 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:agg="http://jal.com/Namespace/AGG/RES_PriceAndRePrice_Request/V1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soacore="http://jal.com/Namespace/SOA/Core/V1" elementFormDefault="qualified" version="1.0" targetNamespace="http://jal.com/Namespace/AGG/RES_PriceAndRePrice_Request/V1">
+  <xsd:import namespace="http://jal.com/Namespace/SOA/Core/V1" schemaLocation="../../../SOA/Core/V1/SOACoreProxy_V1.xsd"/>
+  <xsd:element name="RES_PriceAndRePriceRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="ApplicationName" minOccurs="1" type="soacore:applicationNameType"/>
+        <xsd:element name="Reservation" minOccurs="0">
+          <xsd:complexType>
+            <xsd:attribute name="BookingIdentifier" use="optional">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:minLength value="6"/>
+                  <xsd:maxLength value="6"/>
+                  <xsd:pattern value="[0-9a-zA-Z]{6}"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:attribute>
+            <xsd:attribute name="ReceivedFrom" use="optional">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:minLength value="1"/>
+                  <xsd:maxLength value="99"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:attribute>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="Commit" minOccurs="0">
+          <xsd:complexType>
+            <xsd:attribute name="IgnoreWarningsOption" use="optional">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:boolean"/>
+              </xsd:simpleType>
+            </xsd:attribute>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="PricingOption" minOccurs="0" maxOccurs="999">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="AssociatedPNRElement" minOccurs="0" maxOccurs="99">
+                <xsd:complexType>
+                  <xsd:attribute name="Type" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                        <xsd:maxLength value="10"/>
+                        <xsd:pattern value="([0-9a-zA-Z])+"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                  <xsd:attribute name="Tattoo" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:NMTOKEN"/>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                  <xsd:attribute name="RefIDs" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:NMTOKEN"/>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="TicketingInfo" minOccurs="0" maxOccurs="99">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="FareBasis" minOccurs="0">
+                      <xsd:complexType>
+                        <xsd:attribute name="FareBasisCode" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                              <xsd:minLength value="1"/>
+                              <xsd:maxLength value="15"/>
+                              <xsd:pattern value="[a-zA-Z0-9]{1,15}"/>
+                            </xsd:restriction>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="TicketDesignator" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                              <xsd:minLength value="1"/>
+                              <xsd:maxLength value="6"/>
+                              <xsd:pattern value="[a-zA-Z0-9]{1,6}"/>
+                            </xsd:restriction>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="Operation" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                              <xsd:minLength value="1"/>
+                              <xsd:maxLength value="14"/>
+                              <xsd:pattern value="[0-9a-zA-Z]{1,14}"/>
+                            </xsd:restriction>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="DiagnosticType" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                              <xsd:minLength value="1"/>
+                              <xsd:maxLength value="10"/>
+                              <xsd:pattern value="([0-9a-zA-Z])+"/>
+                            </xsd:restriction>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="UpsellRecoID" minOccurs="0" maxOccurs="20">
+                      <xsd:simpleType>
+                        <xsd:restriction base="xsd:integer"/>
+                      </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="FareFamily" minOccurs="0" maxOccurs="9">
+                      <xsd:complexType>
+                        <xsd:attribute name="Name" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                              <xsd:minLength value="1"/>
+                              <xsd:maxLength value="30"/>
+                            </xsd:restriction>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="Owner" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                              <xsd:minLength value="2"/>
+                              <xsd:maxLength value="3"/>
+                              <xsd:pattern value="([A-Z]{3}|[A-Z]{2})|([0-9][A-Z])|([A-Z][0-9])"/>
+                            </xsd:restriction>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="TourCode" minOccurs="0">
+                      <xsd:simpleType>
+                        <xsd:restriction base="xsd:string"/>
+                      </xsd:simpleType>
+                    </xsd:element>
+                  </xsd:sequence>
+                  <xsd:attribute name="Number" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                        <xsd:maxLength value="16"/>
+                        <xsd:pattern value="[0-9]{1,16}"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                  <xsd:attribute name="Type" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                        <xsd:maxLength value="14"/>
+                        <xsd:pattern value="[0-9a-zA-Z]{1,14}"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="ServiceProvider" minOccurs="0" maxOccurs="20">
+                <xsd:complexType>
+                  <xsd:simpleContent>
+                    <xsd:extension base="agg:ServiceProviderType">
+                      <xsd:attribute name="Type" use="optional">
+                        <xsd:simpleType>
+                          <xsd:restriction base="xsd:string">
+                            <xsd:minLength value="1"/>
+                            <xsd:maxLength value="19"/>
+                            <xsd:pattern value="[0-9a-zA-Z]{1,19}"/>
+                          </xsd:restriction>
+                        </xsd:simpleType>
+                      </xsd:attribute>
+                    </xsd:extension>
+                  </xsd:simpleContent>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="NegotiatedFare" minOccurs="0" maxOccurs="20">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="Corporate" minOccurs="0" maxOccurs="10">
+                      <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                          <xsd:minLength value="1"/>
+                          <xsd:maxLength value="20"/>
+                          <xsd:pattern value="[a-zA-z0-9.\-&amp;]+"/>
+                        </xsd:restriction>
+                      </xsd:simpleType>
+                    </xsd:element>
+                  </xsd:sequence>
+                  <xsd:attribute name="Type" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                        <xsd:maxLength value="14"/>
+                        <xsd:pattern value="[0-9a-zA-Z]{1,14}"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="TaxAndFees" minOccurs="0" maxOccurs="20">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="Tax" minOccurs="0" maxOccurs="20">
+                      <xsd:complexType>
+                        <xsd:attribute name="amountType" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                              <xsd:minLength value="1"/>
+                              <xsd:maxLength value="19"/>
+                              <xsd:pattern value="[0-9a-zA-Z]{1,19}"/>
+                            </xsd:restriction>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="CurrencyCode" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                              <xsd:minLength value="3"/>
+                              <xsd:maxLength value="3"/>
+                              <xsd:pattern value="[a-zA-Z]{3}"/>
+                            </xsd:restriction>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="DecimalPlaces" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:nonNegativeInteger"/>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="Amount" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:integer"/>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="MiscValue" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                              <xsd:enumeration value="EXEMPTED"/>
+                              <xsd:enumeration value=""/>
+                            </xsd:restriction>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="Type" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:string"/>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="IsExempted" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:boolean"/>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="NatureCode" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:string"/>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="Indicator" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:string"/>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="IsoCode" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:string"/>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="Rate" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:decimal"/>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="Fee" minOccurs="0" maxOccurs="20">
+                      <xsd:complexType>
+                        <xsd:attribute name="CurrencyCode" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                              <xsd:minLength value="3"/>
+                              <xsd:maxLength value="3"/>
+                              <xsd:pattern value="[a-zA-Z]{3}"/>
+                            </xsd:restriction>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="DecimalPlaces" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:nonNegativeInteger"/>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="Amount" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:integer"/>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="Type" use="required">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:string"/>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="IDCode" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:string"/>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="Description" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:string"/>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="Flexibility" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:integer"/>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="Code" use="optional"/>
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                  <xsd:attribute name="Operation" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                        <xsd:maxLength value="14"/>
+                        <xsd:pattern value="[0-9a-zA-Z]{1,14}"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                  <xsd:attribute name="DateTime" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:date"/>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="Booking" minOccurs="0" maxOccurs="20">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="Cabin" minOccurs="0" maxOccurs="20">
+                      <xsd:complexType>
+                        <xsd:simpleContent>
+                          <xsd:extension base="agg:CabinType">
+                            <xsd:attribute name="CabinOrder" use="optional">
+                              <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                  <xsd:minLength value="1"/>
+                                  <xsd:maxLength value="19"/>
+                                  <xsd:pattern value="[0-9a-zA-Z]{1,19}"/>
+                                </xsd:restriction>
+                              </xsd:simpleType>
+                            </xsd:attribute>
+                          </xsd:extension>
+                        </xsd:simpleContent>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="Class" minOccurs="0" maxOccurs="20">
+                      <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                          <xsd:minLength value="1"/>
+                          <xsd:maxLength value="1"/>
+                          <xsd:pattern value="[a-zA-Z]{1}"/>
+                        </xsd:restriction>
+                      </xsd:simpleType>
+                    </xsd:element>
+                  </xsd:sequence>
+                  <xsd:attribute name="Validation" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:NMTOKEN">
+                        <xsd:enumeration value="Yes"/>
+                        <xsd:enumeration value="No"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                  <xsd:attribute name="Operation" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                        <xsd:maxLength value="19"/>
+                        <xsd:pattern value="[0-9a-zA-Z]{1,19}"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                  <xsd:attribute name="Type" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                        <xsd:maxLength value="19"/>
+                        <xsd:pattern value="[0-9a-zA-Z]{1,19}"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                  <xsd:attribute name="DateTime" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:date"/>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="FareDetermination" minOccurs="0" maxOccurs="20">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="Place" minOccurs="0" maxOccurs="20">
+                      <xsd:complexType>
+                        <xsd:attribute name="Type" use="optional"/>
+                        <xsd:attribute name="Operation" use="optional"/>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="Fee" minOccurs="0">
+                      <xsd:complexType>
+                        <xsd:simpleContent>
+                          <xsd:extension base="agg:FeeType">
+                            <xsd:attribute name="Type" use="optional"/>
+                          </xsd:extension>
+                        </xsd:simpleContent>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="Restriction" minOccurs="0" maxOccurs="20">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="Penalty" minOccurs="0">
+                            <xsd:complexType>
+                              <xsd:attribute name="CurrencyCode" use="optional">
+                                <xsd:simpleType>
+                                  <xsd:restriction base="xsd:string">
+                                    <xsd:minLength value="3"/>
+                                    <xsd:maxLength value="3"/>
+                                    <xsd:pattern value="[a-zA-Z]{3}"/>
+                                  </xsd:restriction>
+                                </xsd:simpleType>
+                              </xsd:attribute>
+                              <xsd:attribute name="DecimalPlaces" use="optional">
+                                <xsd:simpleType>
+                                  <xsd:restriction base="xsd:nonNegativeInteger"/>
+                                </xsd:simpleType>
+                              </xsd:attribute>
+                              <xsd:attribute name="Amount" use="optional">
+                                <xsd:simpleType>
+                                  <xsd:restriction base="xsd:integer"/>
+                                </xsd:simpleType>
+                              </xsd:attribute>
+                              <xsd:attribute name="Type" use="required">
+                                <xsd:simpleType>
+                                  <xsd:restriction base="xsd:string"/>
+                                </xsd:simpleType>
+                              </xsd:attribute>
+                              <xsd:attribute name="IDCode" use="optional">
+                                <xsd:simpleType>
+                                  <xsd:restriction base="xsd:string"/>
+                                </xsd:simpleType>
+                              </xsd:attribute>
+                              <xsd:attribute name="Description" use="optional">
+                                <xsd:simpleType>
+                                  <xsd:restriction base="xsd:string"/>
+                                </xsd:simpleType>
+                              </xsd:attribute>
+                              <xsd:attribute name="amountType" use="optional">
+                                <xsd:simpleType>
+                                  <xsd:restriction base="xsd:string">
+                                    <xsd:minLength value="1"/>
+                                    <xsd:maxLength value="19"/>
+                                    <xsd:pattern value="[0-9a-zA-Z]{1,19}"/>
+                                  </xsd:restriction>
+                                </xsd:simpleType>
+                              </xsd:attribute>
+                            </xsd:complexType>
+                          </xsd:element>
+                        </xsd:sequence>
+                        <xsd:attribute name="Type" use="optional"/>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="FormOfPayment" minOccurs="0" maxOccurs="9">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="Card" minOccurs="0">
+                            <xsd:complexType>
+                              <xsd:attribute name="Number" use="optional">
+                                <xsd:simpleType>
+                                  <xsd:restriction base="xsd:string">
+                                    <xsd:minLength value="1"/>
+                                    <xsd:maxLength value="100"/>
+                                  </xsd:restriction>
+                                </xsd:simpleType>
+                              </xsd:attribute>
+                              <xsd:attribute name="SubType" use="optional">
+                                <xsd:simpleType>
+                                  <xsd:restriction base="xsd:string">
+                                    <xsd:minLength value="1"/>
+                                    <xsd:maxLength value="10"/>
+                                  </xsd:restriction>
+                                </xsd:simpleType>
+                              </xsd:attribute>
+                              <xsd:attribute name="VendorCode" use="optional">
+                                <xsd:simpleType>
+                                  <xsd:restriction base="xsd:string">
+                                    <xsd:minLength value="1"/>
+                                    <xsd:maxLength value="2"/>
+                                  </xsd:restriction>
+                                </xsd:simpleType>
+                              </xsd:attribute>
+                              <xsd:attribute name="ExpiryDate" use="optional">
+                                <xsd:simpleType>
+                                  <xsd:restriction base="xsd:string">
+                                    <xsd:minLength value="4"/>
+                                    <xsd:maxLength value="4"/>
+                                    <xsd:pattern value="(0[1-9]|1[0-2])[0-9][0-9]"/>
+                                  </xsd:restriction>
+                                </xsd:simpleType>
+                              </xsd:attribute>
+                            </xsd:complexType>
+                          </xsd:element>
+                          <xsd:element name="Value" minOccurs="0" maxOccurs="2">
+                            <xsd:complexType>
+                              <xsd:attribute name="CurrencyCode" use="optional">
+                                <xsd:simpleType>
+                                  <xsd:restriction base="xsd:string">
+                                    <xsd:minLength value="3"/>
+                                    <xsd:maxLength value="3"/>
+                                    <xsd:pattern value="[a-zA-Z]{3}"/>
+                                  </xsd:restriction>
+                                </xsd:simpleType>
+                              </xsd:attribute>
+                              <xsd:attribute name="DecimalPlaces" use="optional">
+                                <xsd:simpleType>
+                                  <xsd:restriction base="xsd:nonNegativeInteger"/>
+                                </xsd:simpleType>
+                              </xsd:attribute>
+                              <xsd:attribute name="Amount" use="optional">
+                                <xsd:simpleType>
+                                  <xsd:restriction base="xsd:integer"/>
+                                </xsd:simpleType>
+                              </xsd:attribute>
+                            </xsd:complexType>
+                          </xsd:element>
+                        </xsd:sequence>
+                        <xsd:attribute name="Code" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                              <xsd:minLength value="1"/>
+                              <xsd:maxLength value="20"/>
+                            </xsd:restriction>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                  <xsd:attribute name="PricingLogic" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                        <xsd:maxLength value="19"/>
+                        <xsd:pattern value="[0-9a-zA-Z]{1,19}"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                  <xsd:attribute name="LowestFareProcessing" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                        <xsd:maxLength value="19"/>
+                        <xsd:pattern value="[0-9a-zA-Z]{1,19}"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                  <xsd:attribute name="Operation" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                        <xsd:maxLength value="19"/>
+                        <xsd:pattern value="[0-9a-zA-Z]{1,19}"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                  <xsd:attribute name="CurrencyCode" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="3"/>
+                        <xsd:maxLength value="3"/>
+                        <xsd:pattern value="[a-zA-Z]{3}"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="LoyaltyProgram" minOccurs="0" maxOccurs="20">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="Point" minOccurs="0">
+                      <xsd:complexType>
+                        <xsd:simpleContent>
+                          <xsd:extension base="xsd:integer">
+                            <xsd:attribute name="Type" use="optional">
+                              <xsd:simpleType>
+                                <xsd:restriction base="xsd:string"/>
+                              </xsd:simpleType>
+                            </xsd:attribute>
+                          </xsd:extension>
+                        </xsd:simpleContent>
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                  <xsd:attribute name="Type" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                        <xsd:maxLength value="19"/>
+                        <xsd:pattern value="[0-9a-zA-Z]{1,19}"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                  <xsd:attribute name="ProviderCode" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                        <xsd:maxLength value="16"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                  <xsd:attribute name="Number" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                        <xsd:maxLength value="19"/>
+                        <xsd:pattern value="[0-9a-zA-Z]{1,19}"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                  <xsd:attribute name="TierLevel" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                        <xsd:maxLength value="19"/>
+                        <xsd:pattern value="[0-9a-zA-Z]{1,19}"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                  <xsd:attribute name="PriorityCode" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                        <xsd:maxLength value="19"/>
+                        <xsd:pattern value="[0-9a-zA-Z]{1,19}"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                  <xsd:attribute name="CurrencyCode" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="3"/>
+                        <xsd:maxLength value="3"/>
+                        <xsd:pattern value="[a-zA-Z]{3}"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="Discount" minOccurs="0" maxOccurs="20">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="code" minOccurs="0">
+                      <xsd:complexType>
+                        <xsd:simpleContent>
+                          <xsd:extension base="agg:codeType">
+                            <xsd:attribute name="Operation" use="optional">
+                              <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                  <xsd:minLength value="1"/>
+                                  <xsd:maxLength value="19"/>
+                                  <xsd:pattern value="[0-9a-zA-Z]{1,19}"/>
+                                </xsd:restriction>
+                              </xsd:simpleType>
+                            </xsd:attribute>
+                          </xsd:extension>
+                        </xsd:simpleContent>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="Price" minOccurs="0">
+                      <xsd:complexType>
+                        <xsd:attribute name="CurrencyCode" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                              <xsd:minLength value="3"/>
+                              <xsd:maxLength value="3"/>
+                              <xsd:pattern value="[a-zA-Z]{3}"/>
+                            </xsd:restriction>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="DecimalPlaces" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:nonNegativeInteger"/>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="Amount" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:integer"/>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="MiscValue" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                              <xsd:enumeration value="EXEMPTED"/>
+                              <xsd:enumeration value=""/>
+                            </xsd:restriction>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="Type" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:string"/>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="amountType" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                              <xsd:minLength value="1"/>
+                              <xsd:maxLength value="19"/>
+                              <xsd:pattern value="[0-9a-zA-Z]{1,19}"/>
+                            </xsd:restriction>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="Operation" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                              <xsd:minLength value="1"/>
+                              <xsd:maxLength value="19"/>
+                              <xsd:pattern value="[0-9a-zA-Z]{1,19}"/>
+                            </xsd:restriction>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="TicketDesignator" use="optional">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                              <xsd:minLength value="1"/>
+                              <xsd:maxLength value="19"/>
+                              <xsd:pattern value="[0-9a-zA-Z]{1,19}"/>
+                            </xsd:restriction>
+                          </xsd:simpleType>
+                        </xsd:attribute>
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="GeographicalInfo" minOccurs="0" maxOccurs="20">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="Place" minOccurs="0" maxOccurs="15">
+                      <xsd:complexType>
+                        <xsd:simpleContent>
+                          <xsd:extension base="agg:PlaceType">
+                            <xsd:attribute name="Type" use="optional">
+                              <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                  <xsd:minLength value="1"/>
+                                  <xsd:maxLength value="19"/>
+                                  <xsd:pattern value="[0-9a-zA-Z]{1,19}"/>
+                                </xsd:restriction>
+                              </xsd:simpleType>
+                            </xsd:attribute>
+                          </xsd:extension>
+                        </xsd:simpleContent>
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                  <xsd:attribute name="RouteIndicator" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                        <xsd:maxLength value="2"/>
+                        <xsd:pattern value="([0-9a-zA-Z])+"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="Customization" minOccurs="0" maxOccurs="20">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="Filter" minOccurs="0">
+                      <xsd:complexType>
+                        <xsd:simpleContent>
+                          <xsd:extension base="agg:FilterType">
+                            <xsd:attribute name="Operation" use="optional">
+                              <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                  <xsd:minLength value="1"/>
+                                  <xsd:maxLength value="19"/>
+                                  <xsd:pattern value="[0-9a-zA-Z]{1,19}"/>
+                                </xsd:restriction>
+                              </xsd:simpleType>
+                            </xsd:attribute>
+                            <xsd:attribute name="onlyIssuable" use="optional">
+                              <xsd:simpleType>
+                                <xsd:restriction base="xsd:NMTOKEN">
+                                  <xsd:enumeration value="Yes"/>
+                                  <xsd:enumeration value="No"/>
+                                </xsd:restriction>
+                              </xsd:simpleType>
+                            </xsd:attribute>
+                            <xsd:attribute name="Type" use="optional">
+                              <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                  <xsd:minLength value="1"/>
+                                  <xsd:maxLength value="19"/>
+                                  <xsd:pattern value="[0-9a-zA-Z]{1,19}"/>
+                                </xsd:restriction>
+                              </xsd:simpleType>
+                            </xsd:attribute>
+                          </xsd:extension>
+                        </xsd:simpleContent>
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                  <xsd:attribute name="requestedDescription" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                        <xsd:maxLength value="19"/>
+                        <xsd:pattern value="[0-9a-zA-Z]{1,19}"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="Reprice" minOccurs="0" maxOccurs="20">
+                <xsd:complexType>
+                  <xsd:attribute name="residualValue" use="optional">
+                    <xsd:simpleType>
+                      <xsd:list itemType="xsd:NMTOKEN"/>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                  <xsd:attribute name="CheckinCoupon" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:NMTOKEN">
+                        <xsd:enumeration value="Yes"/>
+                        <xsd:enumeration value="No"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                  <xsd:attribute name="Operation" use="optional">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                        <xsd:maxLength value="19"/>
+                        <xsd:pattern value="[0-9a-zA-Z]{1,19}"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="OtherOptions" minOccurs="0" maxOccurs="20">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="Parameter" minOccurs="0" maxOccurs="99">
+                      <xsd:complexType>
+                        <xsd:simpleContent>
+                          <xsd:extension base="xsd:string">
+                            <xsd:attribute name="Name" use="optional">
+                              <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                  <xsd:minLength value="1"/>
+                                  <xsd:maxLength value="20"/>
+                                  <xsd:pattern value="[0-9a-zA-Z]{1,20}"/>
+                                </xsd:restriction>
+                              </xsd:simpleType>
+                            </xsd:attribute>
+                          </xsd:extension>
+                        </xsd:simpleContent>
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                  <xsd:attribute name="Code" use="required">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                        <xsd:maxLength value="20"/>
+                        <xsd:pattern value="[0-9a-zA-Z]{1,20}"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+      <xsd:attribute name="Action" use="optional">
+        <xsd:simpleType>
+          <xsd:list>
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:enumeration value="PRICEAGAIN"/>
+                <xsd:enumeration value="PRICE"/>
+                <xsd:enumeration value="RETRIEVE"/>
+                <xsd:enumeration value="COMMIT"/>
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:list>
+        </xsd:simpleType>
+      </xsd:attribute>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:simpleType name="ServiceProviderType">
+    <xsd:restriction base="xsd:string">
+      <xsd:minLength value="2"/>
+      <xsd:maxLength value="3"/>
+      <xsd:pattern value="([A-Z]{3}|[A-Z]{2})|([0-9][A-Z])|([A-Z][0-9])"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="CabinType">
+    <xsd:restriction base="xsd:string">
+      <xsd:minLength value="1"/>
+      <xsd:maxLength value="1"/>
+      <xsd:pattern value="[0-9a-zA-Z]{1}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="FeeType">
+    <xsd:restriction base="xsd:string">
+      <xsd:minLength value="1"/>
+      <xsd:maxLength value="19"/>
+      <xsd:pattern value="[0-9a-zA-Z]{1,19}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="codeType">
+    <xsd:restriction base="xsd:string">
+      <xsd:minLength value="1"/>
+      <xsd:maxLength value="32"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="PlaceType">
+    <xsd:restriction base="xsd:string">
+      <xsd:minLength value="3"/>
+      <xsd:maxLength value="7"/>
+      <xsd:pattern value="([0-9a-zA-Z])*"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="FilterType">
+    <xsd:restriction base="xsd:string">
+      <xsd:minLength value="1"/>
+      <xsd:maxLength value="8"/>
+      <xsd:pattern value="[0-9a-zA-Z]{1,8}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

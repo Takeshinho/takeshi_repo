@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="FromToModule">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<script type="text/javascript" src="../js/angular.js"></script>
+	<script type="text/javascript" src="../js/my-module.js"></script>
+	
+</head>
+<body>
+	<div ng-controller="FromToController as fromToController">
+		<form>
+			<input type="text" ng-model="from"></input>
+			<br>
+			<input type="text" ng-model="to"></input>
+			<br>
+			<button ng-click="fromToController.jsonReq()">Request</button>
+			<br>
+			{{from}} {{to}}
+			<br>
+			{{fromToController.reqParam}}
+		</form>
+		
+		<div >
+			<br>
+		</div>
+	
+	</div>
+</body>
+</html>
